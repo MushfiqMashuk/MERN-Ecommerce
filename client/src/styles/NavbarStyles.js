@@ -16,12 +16,20 @@ const Left = styled.div`
   flex: 1;
   display: flex;
   align-items: center;
+  font-weight: 550;
 `;
+
 const Center = styled.div`
   flex: 1;
+  text-align: center;
 `;
+
 const Right = styled.div`
   flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  font-weight: 550;
 `;
 
 const Language = styled.span`
@@ -41,7 +49,18 @@ const SearchContainer = styled.div`
   padding: 5px;
 `;
 
-export default {
+const Logo = styled.h1`
+  font-weight: bold;
+`;
+
+const MenuItem = styled.div`
+  font-size: 14px;
+  cursor: pointer;
+  padding-left: 25px;
+`;
+
+
+export {
   Container,
   Wrapper,
   Left,
@@ -50,4 +69,6 @@ export default {
   Language,
   Input,
   SearchContainer,
+  Logo,
+  MenuItem,
 };
