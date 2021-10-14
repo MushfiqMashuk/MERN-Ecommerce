@@ -1,10 +1,11 @@
 import React from "react";
-import Nav from "../Nav";
 import Announcement from "../Announcement";
-import Slider from "../Slider";
 import Categories from "../Categories";
-import Products from "../Products";
+import Footer from "../Footer";
+import Nav from "../Nav";
 import Newsletter from "../Newsletter";
+import Products from "../Products";
+import Slider from "../Slider";
 
 export default function Home() {
   return (
@@ -15,6 +16,7 @@ export default function Home() {
       <Categories />
       <Products />
       <Newsletter />
+      <Footer />
     </div>
   );
 }
