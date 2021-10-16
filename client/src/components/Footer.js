@@ -10,12 +10,11 @@ import {
 import React from "react";
 import styled from "styled-components";
 
-console.log(Facebook, Instagram, Twitter);
-
 const Container = styled.div`
   display: flex;
   justify-content: space-between;
   background-color: burlywood;
+  padding: 20px;
 `;
 const Left = styled.div`
   flex: 1;

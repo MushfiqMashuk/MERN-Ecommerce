@@ -29,8 +29,9 @@ export default function ProductList() {
             <Option disabled defaultValue>
               Size
             </Option>
+            <Option>XXL</Option>
             <Option>XL</Option>
-            <Option>X</Option>
+            <Option>L</Option>
             <Option>M</Option>
             <Option>S</Option>
             <Option>XS</Option>
