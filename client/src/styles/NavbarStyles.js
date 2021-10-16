@@ -2,7 +2,11 @@ import styled from "styled-components";
 
 const Container = styled.div`
   height: 60px;
-  border-bottom: 1px solid gray;
+  border-bottom: 1px solid lightgray;
+  position: sticky;
+  top: 0;
+  background-color: white;
+  z-index: 4;
 `;
 
 const Wrapper = styled.div`
@@ -58,7 +62,6 @@ const MenuItem = styled.div`
   cursor: pointer;
   padding-left: 25px;
 `;
-
 
 export {
   Container,
