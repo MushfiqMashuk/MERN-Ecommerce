@@ -1,3 +1,4 @@
+import { Add, Remove } from "@material-ui/icons";
 import React from "react";
 import styled from "styled-components";
 import Layout from "../Layout";
@@ -33,7 +34,7 @@ const Price = styled.span`
 
 const FilterContainer = styled.div`
   width: 50%;
-  margin: 50px 0px;
+  margin: 40px 0px;
   display: flex;
   justify-content: space-between;
 `;
@@ -44,7 +45,8 @@ const Filter = styled.div`
 `;
 
 const FilterTitle = styled.span`
-  margin-right: 10px;
+  font-size: 20px;
+  font-weight: 200;
 `;
 
 const FilterColor = styled.div`
@@ -62,6 +64,40 @@ const FilterSize = styled.select`
 `;
 
 const FilterSizeOption = styled.option``;
+
+const AddContainer = styled.div`
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
+const AmountContainer = styled.div`
+  display: flex;
+  align-items: center;
+  font-weight: 700;
+`;
+const Amount = styled.span`
+  min-width: 30px;
+  width: fit-content;
+  height: 30px;
+  border-radius: 10px;
+  border: 1px solid teal;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0px 5px;
+`;
+const Button = styled.button`
+  font-weight: 500;
+  border: 2px solid teal;
+  background-color: white;
+  padding: 15px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: whitesmoke;
+  }
+`;
 
 export default function Product() {
   return (
@@ -99,6 +135,15 @@ export default function Product() {
               </FilterSize>
             </Filter>
           </FilterContainer>
+
+          <AddContainer>
+            <AmountContainer>
+              <Remove style={{ cursor: "pointer" }} />
+              <Amount>1</Amount>
+              <Add style={{ cursor: "pointer" }} />
+            </AmountContainer>
+            <Button>ADD TO CART</Button>
+          </AddContainer>
         </InfoContainer>
       </Wrapper>
     </Layout>
