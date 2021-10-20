@@ -1,3 +1,4 @@
+import styled from "styled-components";
 
 const Wrapper = styled.div`
   padding: 50px;
@@ -114,6 +115,5 @@ const components = {
   Image,
   Wrapper,
 };
-
 
 export default components;
