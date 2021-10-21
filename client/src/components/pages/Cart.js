@@ -107,12 +107,43 @@ const ProductPrice = styled.div`
 
 const Summary = styled.div`
   flex: 1;
+  border: 1px solid lightgray;
+  height: fit-content;
+  min-height: 50vh;
+  border-radius: 10px;
+  padding: 20px;
 `;
 
 const Hr = styled.hr`
   border: none;
-  height: 2px;
+  height: 1.5px;
   background-color: #eee;
+`;
+
+const SummaryTitle = styled.h1`
+  font-weight: 200;
+`;
+
+const SummaryItem = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin: 30px 0px;
+  font-size: ${(props) => props.type === "total" && "24px"};
+  font-weight: ${(props) => props.type === "total" && "500"};
+`;
+
+const SummaryItemText = styled.span``;
+
+const SummaryItemPrice = styled.span``;
+
+const Button = styled.button`
+  width: 100%;
+  background-color: black;
+  color: white;
+  cursor: pointer;
+  border: none;
+  padding: 15px;
+  margin-top: 10px;
 `;
 
 export default function Cart() {
@@ -143,7 +174,7 @@ export default function Cart() {
                     </ProductId>
                     <ProductColor color="pink" />
                     <ProductSize>
-                      <b>Size:</b> Medium
+                      <b>Size:</b> M
                     </ProductSize>
                   </Details>
                 </ProductDetail>
@@ -166,12 +197,12 @@ export default function Cart() {
                       bracelet
                     </ProductName>
                     <ProductId>
-                      <b>ID:</b> 94589578956
+                      <b>ID:</b> 84989578956
                     </ProductId>
                     <ProductColor color="silver" />
-                    
+
                     <ProductSize>
-                      <b>Size:</b> Medium
+                      <b>Size:</b> L
                     </ProductSize>
                   </Details>
                 </ProductDetail>
@@ -181,11 +212,58 @@ export default function Cart() {
                     <Amount>2</Amount>
                     <Remove style={{ cursor: "pointer" }} />
                   </AmountContainer>
-                  <ProductPrice>$ 30</ProductPrice>
+                  <ProductPrice>$ 200</ProductPrice>
+                </Price>
+              </Product>
+              <Hr />
+              <Product>
+                <ProductDetail>
+                  <Image src="images/watch.png"></Image>
+                  <Details>
+                    <ProductName>
+                      <b>Product:</b> Round black Rolex analog watch with
+                      bracelet
+                    </ProductName>
+                    <ProductId>
+                      <b>ID:</b> 84989578956
+                    </ProductId>
+                    <ProductColor color="silver" />
+
+                    <ProductSize>
+                      <b>Size:</b> L
+                    </ProductSize>
+                  </Details>
+                </ProductDetail>
+                <Price>
+                  <AmountContainer>
+                    <Add style={{ cursor: "pointer" }} />
+                    <Amount>2</Amount>
+                    <Remove style={{ cursor: "pointer" }} />
+                  </AmountContainer>
+                  <ProductPrice>$ 200</ProductPrice>
                 </Price>
               </Product>
             </Info>
-            <Summary>Summary</Summary>
+            <Summary>
+              <SummaryTitle>ORDER SUMMARY</SummaryTitle>
+              <SummaryItem>
+                <SummaryItemText>Subtotal</SummaryItemText>
+                <SummaryItemPrice>$ 80</SummaryItemPrice>
+              </SummaryItem>
+              <SummaryItem>
+                <SummaryItemText>Estimated Shipping</SummaryItemText>
+                <SummaryItemPrice>$ 4.90</SummaryItemPrice>
+              </SummaryItem>
+              <SummaryItem>
+                <SummaryItemText>Shipping Discount</SummaryItemText>
+                <SummaryItemPrice>$ -4.90</SummaryItemPrice>
+              </SummaryItem>
+              <SummaryItem type="total">
+                <SummaryItemText>Total</SummaryItemText>
+                <SummaryItemPrice>$ 80</SummaryItemPrice>
+              </SummaryItem>
+              <Button>CHECKOUT NOW</Button>
+            </Summary>
           </Bottom>
         </Wrapper>
       </Layout>
