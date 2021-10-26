@@ -3,6 +3,7 @@ import React from "react";
 import styled from "styled-components";
 import Layout from "../Layout";
 
+
 const Wrapper = styled.div`
   padding: 20px;
 `;
@@ -114,12 +115,6 @@ const Summary = styled.div`
   padding: 20px;
 `;
 
-const Hr = styled.hr`
-  border: none;
-  height: 1.5px;
-  background-color: #eee;
-`;
-
 const SummaryTitle = styled.h1`
   font-weight: 200;
 `;
@@ -144,6 +139,12 @@ const Button = styled.button`
   border: none;
   padding: 15px;
   margin-top: 10px;
+`;
+
+const Hr = styled.hr`
+  border: none;
+  height: 1px;
+  background-color: #eee;
 `;
 
 export default function Cart() {
@@ -215,36 +216,8 @@ export default function Cart() {
                   <ProductPrice>$ 200</ProductPrice>
                 </Price>
               </Product>
-              <Hr />
-              <Product>
-                <ProductDetail>
-                  <Image src="images/watch.png"></Image>
-                  <Details>
-                    <ProductName>
-                      <b>Product:</b> Round black Rolex analog watch with
-                      bracelet
-                    </ProductName>
-                    <ProductId>
-                      <b>ID:</b> 84989578956
-                    </ProductId>
-                    <ProductColor color="silver" />
-
-                    <ProductSize>
-                      <b>Size:</b> L
-                    </ProductSize>
-                  </Details>
-                </ProductDetail>
-                <Price>
-                  <AmountContainer>
-                    <Add style={{ cursor: "pointer" }} />
-                    <Amount>2</Amount>
-                    <Remove style={{ cursor: "pointer" }} />
-                  </AmountContainer>
-                  <ProductPrice>$ 200</ProductPrice>
-                </Price>
-              </Product>
             </Info>
-            <Summary>
+            <Summary className="hide">
               <SummaryTitle>ORDER SUMMARY</SummaryTitle>
               <SummaryItem>
                 <SummaryItemText>Subtotal</SummaryItemText>
