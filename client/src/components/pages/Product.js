@@ -1,27 +1,25 @@
 import { Add, Remove } from "@material-ui/icons";
 import React from "react";
-import components from "../../styles/ProductStyles";
-import Layout from "../Layout";
-
-const {
-  Button,
+import {
+  AddContainer,
   Amount,
   AmountContainer,
-  AddContainer,
-  FilterSizeOption,
-  FilterSize,
-  FilterColor,
-  FilterTitle,
-  Filter,
-  FilterContainer,
+  Button,
   Description,
+  Filter,
+  FilterColor,
+  FilterContainer,
+  FilterSize,
+  FilterSizeOption,
+  FilterTitle,
+  Image,
+  ImageContainer,
+  InfoContainer,
   Price,
   Title,
-  InfoContainer,
-  ImageContainer,
-  Image,
   Wrapper,
-} = components;
+} from "../../styles/ProductStyles";
+import Layout from "../Layout";
 
 export default function Product() {
   return (

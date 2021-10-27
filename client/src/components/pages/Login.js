@@ -1,8 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import components from "../../styles/LoginStyles";
-
-const { Button, Form, Input, Title, Wrapper } = components;
+import { Button, Form, Input, Title, Wrapper } from "../../styles/LoginStyles";
 
 const Container = styled.div`
   width: 100vw;
@@ -21,8 +19,8 @@ const Link = styled.a`
   cursor: pointer;
   color: #1877f2;
 
-  &:hover{
-      text-decoration: underline;
+  &:hover {
+    text-decoration: underline;
   }
 `;
 

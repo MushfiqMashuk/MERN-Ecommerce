@@ -8,9 +8,21 @@ import {
   Twitter,
 } from "@material-ui/icons";
 import React from "react";
-import styled from "styled-components";
-
-
+import {
+  Center,
+  ContactItem,
+  Container,
+  Description,
+  Left,
+  List,
+  ListItem,
+  Logo,
+  Payment,
+  Right,
+  SocialContainer,
+  SocialIcon,
+  Title,
+} from "../styles/FooterStyles";
 
 export default function Footer() {
   return (

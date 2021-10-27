@@ -1,10 +1,12 @@
 import styled from "styled-components";
+import { mobile } from "../responsive";
 
 const Container = styled.div`
   display: flex;
   justify-content: space-between;
   background-color: burlywood;
   padding: 20px;
+  ${mobile({ padding: "5px", flexDirection: "column" })}
 `;
 const Left = styled.div`
   flex: 1;
@@ -12,10 +14,13 @@ const Left = styled.div`
   flex-direction: column;
   padding: 20px;
 `;
+
 const Center = styled.div`
   flex: 1;
   padding: 20px;
+  ${mobile({ display: "none" })}
 `;
+
 const Right = styled.div`
   flex: 1;
   padding: 20px;
@@ -30,6 +35,7 @@ const Description = styled.p`
 const SocialContainer = styled.div`
   display: flex;
 `;
+
 const SocialIcon = styled.div`
   margin-right: 20px;
   width: 40px;
@@ -46,6 +52,7 @@ const SocialIcon = styled.div`
 const Title = styled.h3`
   margin-bottom: 30px;
 `;
+
 const List = styled.ul`
   margin: 0px;
   padding: 0px;
@@ -67,3 +74,19 @@ const ContactItem = styled.div`
 const Payment = styled.img`
   cursor: pointer;
 `;
+
+export {
+  Payment,
+  ContactItem,
+  ListItem,
+  List,
+  SocialContainer,
+  SocialIcon,
+  Title,
+  Description,
+  Logo,
+  Right,
+  Center,
+  Left,
+  Container,
+};

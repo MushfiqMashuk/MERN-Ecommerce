@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { mobile } from "../responsive";
 
 const Container = styled.div`
   width: 100vw;
@@ -19,6 +20,7 @@ const Wrapper = styled.div`
   background-color: white;
   padding: 20px;
   border-radius: 5px;
+  ${mobile({ width: "80%" })}
 `;
 
 const Title = styled.h1`
@@ -66,14 +68,4 @@ const Button = styled.button`
   }
 `;
 
-const components = {
-  Container,
-  Wrapper,
-  Form,
-  Title,
-  Input,
-  Agreement,
-  Button,
-};
-
-export default components;
+export { Container, Wrapper, Form, Title, Input, Agreement, Button };

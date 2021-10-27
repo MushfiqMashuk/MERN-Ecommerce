@@ -1,4 +1,3 @@
-//import { Icon } from "@material-ui/core";
 import {
   FavoriteOutlined,
   SearchTwoTone,

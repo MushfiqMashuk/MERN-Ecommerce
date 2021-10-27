@@ -1,8 +1,13 @@
 import React from "react";
-import components from "../../styles/LoginStyles";
-
-const { Agreement, Button, Container, Form, Input, Title, Wrapper } =
-  components;
+import {
+  Agreement,
+  Button,
+  Container,
+  Form,
+  Input,
+  Title,
+  Wrapper,
+} from "../../styles/LoginStyles";
 
 export default function Register() {
   return (
