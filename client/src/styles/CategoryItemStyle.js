@@ -42,6 +42,5 @@ const Button = styled.button`
   }
 `;
 
-const components = { Container, Image, Info, Title, Button };
+export { Container, Image, Info, Title, Button };
 
-export default components;
