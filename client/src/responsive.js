@@ -2,6 +2,8 @@ import { css } from "styled-components";
 
 export function mobile(style) {
   return css`
-    ${style}
+    @media only screen and (max-width: 480px) {
+      ${style}
+    }
   `;
 }

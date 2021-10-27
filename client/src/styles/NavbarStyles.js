@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { mobile } from "../responsive";
 
 const Container = styled.div`
   height: 60px;
@@ -7,6 +8,8 @@ const Container = styled.div`
   top: 0;
   background-color: white;
   z-index: 4;
+
+  ${mobile({height: "50px"})}
 `;
 
 const Wrapper = styled.div`
@@ -14,6 +17,8 @@ const Wrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  ${mobile({ padding: "10px 0px" })}
 `;
 
 const Left = styled.div`
