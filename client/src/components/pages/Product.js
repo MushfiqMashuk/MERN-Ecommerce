@@ -1,6 +1,6 @@
 import { Add, Remove } from "@material-ui/icons";
 import React from "react";
-import components from "../../styles/ProductStyle";
+import components from "../../styles/ProductStyles";
 import Layout from "../Layout";
 
 const {

@@ -1,5 +1,5 @@
 import React from "react";
-import components from "../../styles/ProductListStyle";
+import components from "../../styles/ProductListStyles";
 import Layout from "../Layout";
 import Products from "../Products";
 

@@ -5,7 +5,7 @@ import {
   Image,
   Info,
   Title,
-} from ".././styles/CategoryItemStyle";
+} from "../styles/CategoryItemStyles";
 
 export default function CategoryItem({ item }) {
   return (
