@@ -1,10 +1,13 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
-const userRouter = require("./routes/user");
+const usersRouter = require("./routes/users");
+const authRouter = require("./routes/auth");
 
+// configure dotenv file
 dotenv.config();
 
+// Database connection
 mongoose
   .connect(process.env.MONGODB_CONNECTION_URL)
   .then(() => console.log("Database connection succeded!"))
@@ -12,7 +15,13 @@ mongoose
 
 const app = express();
 
-app.use("/user", userRouter);
+// Preparing my app to take json object
+app.use(express.json());
+
+// Mounting sub apps to their respective routes
+app.use("/auth", authRouter);
+app.use("/users", usersRouter);
+
 
 app.listen(process.env.PORT || 5000, () => {
   console.log(`Listening to port ${process.env.PORT}...`);
