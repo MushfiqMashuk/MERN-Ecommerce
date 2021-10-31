@@ -1,6 +1,7 @@
 const express = require("express");
 const User = require("../models/User");
 const { hash, decrypt } = require("../utilities/hash");
+const jwt = require("jsonwebtoken");
 
 const router = express.Router();
 
@@ -30,14 +31,30 @@ router.post("/login", async (req, res) => {
   try {
     const user = await User.findOne({ username: req.body.username });
 
-    !user && res.status(401).json("Wrong Credentials!");
+    if (user && user._id) {
+      console.log(user);
+      console.log(decrypt(user.password));
+      if (req.body.password === decrypt(user.password)) {
+        // Removing the password
+        const { password, ...others } = user._doc;
 
-    if (req.body.password !== decrypt(user.password)) {
-      res.status(401).json("Wrong Credentials!");
+        const signedToken = jwt.sign(
+          {
+            id: user._id,
+            isAdmin: user.isAdmin,
+          },
+          process.env.JWT.SECRET,
+          {
+            expiresIn: "3d",
+          }
+        );
+
+        res.status(200).json({ ...others, signedToken });
+      } else {
+        res.status(401).json("Incorrect Password!");
+      }
     } else {
-      const { password, ...others } = user._doc;
-
-      res.status(200).json(others);
+      res.status(401).json("Incorrect Username!");
     }
   } catch (err) {
     res.status(500).json("There is a problem in the server side!");
