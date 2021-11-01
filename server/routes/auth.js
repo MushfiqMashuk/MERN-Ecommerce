@@ -8,6 +8,7 @@ const router = express.Router();
 // Register a user
 router.post("/register", async (req, res) => {
   if (req.body.username && req.body.email && req.body.password) {
+
     const userModel = new User({
       username: req.body.username,
       email: req.body.email,
