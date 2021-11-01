@@ -32,24 +32,22 @@ router.post("/login", async (req, res) => {
     const user = await User.findOne({ username: req.body.username });
 
     if (user && user._id) {
-      console.log(user);
-      console.log(decrypt(user.password));
       if (req.body.password === decrypt(user.password)) {
         // Removing the password
         const { password, ...others } = user._doc;
 
-        const signedToken = jwt.sign(
+        const accessToken = jwt.sign(
           {
             id: user._id,
             isAdmin: user.isAdmin,
           },
-          process.env.JWT.SECRET,
+          process.env.JWT_SECRET,
           {
             expiresIn: "3d",
           }
         );
 
-        res.status(200).json({ ...others, signedToken });
+        res.status(200).json({ ...others, accessToken });
       } else {
         res.status(401).json("Incorrect Password!");
       }
@@ -57,7 +55,7 @@ router.post("/login", async (req, res) => {
       res.status(401).json("Incorrect Username!");
     }
   } catch (err) {
-    res.status(500).json("There is a problem in the server side!");
+    res.status(500).json("There is a problem in the server!");
   }
 });
 
