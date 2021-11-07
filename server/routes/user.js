@@ -1,6 +1,6 @@
 const express = require("express");
 const User = require("../models/User");
-const Product = require("../models/Product");
+
 const {
   verifyTokenAndAuthorization,
   verifyTokenAndAdmin,
@@ -71,14 +71,13 @@ router.get("/", verifyTokenAndAdmin, async (req, res) => {
 // Get stats
 
 router.get("/stats", async (req, res) => {
-  //const date = new Date();
-  //const lastYear = new Date(date.setFullYear(date.getFullYear() - 1));
+  const date = new Date();
+  const lastYear = new Date(date.setFullYear(date.getFullYear() - 1));
 
   try {
-    const data = await Product.aggregate([
-      { $match: {} },
-
-      { $group: { _id: "$company", total: { $sum: "$price" } } },
+    const data = await User.aggregate([
+      { $match: { createdAt: { $gte: lastYear } } },
+      { $group: { _id: {$month: "$createdAt"}, total: { $sum: 1 } } },
     ]);
 
     res.status(200).json(data);
