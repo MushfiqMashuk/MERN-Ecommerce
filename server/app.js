@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const userRouter = require("./routes/user");
 const authRouter = require("./routes/auth");
+const productRouter = require("./routes/product");
 
 // configure dotenv file
 dotenv.config();
@@ -21,6 +22,7 @@ app.use(express.json());
 // Mounting sub apps to their respective routes
 app.use("/auth", authRouter);
 app.use("/user", userRouter);
+app.use("/product", productRouter);
 
 app.listen(process.env.PORT || 5000, () => {
   console.log(`Listening to port ${process.env.PORT}...`);

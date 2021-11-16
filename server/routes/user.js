@@ -78,7 +78,11 @@ router.get("/stats", async (req, res) => {
     const data = await User.aggregate([
       { $match: { createdAt: { $gte: lastYear } } },
 
-      { $group: { _id: { $month: "$createdAt" }, total: { $sum: 1 } } },
+      //select * from users where createdAt >= lastYear groupBy month
+
+      { $project: { month: { $month: "$createdAt" } } }, // Created a new variable called month
+
+      { $group: { _id: "$month", totalUser: { $sum: 1 } } },
     ]);
 
     res.status(200).json(data);
