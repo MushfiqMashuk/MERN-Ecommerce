@@ -6,7 +6,7 @@ function hash(password) {
     process.env.PASSWORD_SECRET_KEY
   );
 
-  return hashedPassword.toString();
+  return hashedPassword.toString(CryptoJS.enc.Utf8);
 }
 
 function decrypt(hashedPassword) {
@@ -15,7 +15,7 @@ function decrypt(hashedPassword) {
     process.env.PASSWORD_SECRET_KEY
   );
 
-  return password.toString();
+  return password.toString(CryptoJS.enc.Utf8);
 }
 
 module.exports = { hash, decrypt };

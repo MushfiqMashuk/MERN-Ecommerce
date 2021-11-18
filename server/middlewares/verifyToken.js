@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken");
 
 function verifyToken(req, res, next) {
-  if(req.headers.token){
+  if (req.headers.token) {
     const headersToken = req.headers.token;
 
     const token = headersToken.split(" ")[1];
@@ -24,13 +24,13 @@ function verifyToken(req, res, next) {
 }
 
 function verifyTokenAndAuthorization(req, res, next) {
-    verifyToken(req, res, () => {
-        if(req.params.id === req.user.id || req.user.isAdmin){
-            next();
-        } else {
-            res.status(403).json("You are not authorized!");
-        }
-    });
+  verifyToken(req, res, () => {
+    if (req.params.id === req.user.id || req.user.isAdmin) {
+      next();
+    } else {
+      res.status(403).json("You are not authorized!");
+    }
+  });
 }
 
 function verifyTokenAndAdmin(req, res, next) {
