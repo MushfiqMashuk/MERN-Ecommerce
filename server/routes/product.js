@@ -51,32 +51,43 @@ router.delete("/:id", verifyTokenAndAdmin, async (req, res) => {
   }
 });
 
-// // Get one user
-// router.get("/find/:id", verifyTokenAndAdmin, async (req, res) => {
-//   try {
-//     const user = await User.findById(req.params.id);
+// // find a product
+router.get("/find/:id", async (req, res) => {
+  try {
+    const product = await Product.findById(req.params.id);
 
-//     const { password, ...others } = user._doc;
+    product
+      ? res.status(200).json(product)
+      : res.status(404).json("Product Not Found!");
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
 
-//     res.status(200).json(others);
-//   } catch (err) {
-//     res.status(500).json(err);
-//   }
-// });
+// // Get all products
+router.get("/", async (req, res) => {
+  const newQuery = req.query.new;
+  const categoryQuery = req.query.category;
 
-// // Get all users
-// router.get("/", verifyTokenAndAdmin, async (req, res) => {
-//   const query = req.query.new;
-//   try {
-//     const users = query
-//       ? await User.find().sort({ _id: -1 }).limit(5)
-//       : await User.find();
+  try {
+    let products;
 
-//     res.status(200).json(users);
-//   } catch (err) {
-//     res.status(500).json(err);
-//   }
-// });
+    if (newQuery) {
+      products = await Product.find().sort({ createdAt: -1 }).limit(1);
+    } else if (categoryQuery) {
+      products = await Product.find({
+        categories: { $in: [categoryQuery] }, // If the field is an Array
+      });
+    } else {
+      console.log("normal");
+      products = await Product.find();
+    }
+
+    res.status(200).json(products);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
 
 // // Get stats
 
