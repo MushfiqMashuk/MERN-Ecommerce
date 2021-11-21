@@ -89,27 +89,4 @@ router.get("/", async (req, res) => {
   }
 });
 
-// // Get stats
-
-// router.get("/stats", async (req, res) => {
-//   const date = new Date();
-//   const lastYear = new Date(date.setFullYear(date.getFullYear() - 1));
-
-//   try {
-//     const data = await User.aggregate([
-//       { $match: { createdAt: { $gte: lastYear } } },
-
-//       //select * from users where createdAt >= lastYear groupBy month
-
-//       { $project: { month: { $month: "$createdAt" } } }, // Created a new variable called month
-
-//       { $group: { _id: "$month", totalUser: { $sum: 1 } } },
-//     ]);
-
-//     res.status(200).json(data);
-//   } catch (err) {
-//     res.status(500).json(err);
-//   }
-// });
-
 module.exports = router;
