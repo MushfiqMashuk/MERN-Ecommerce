@@ -1,18 +1,14 @@
 const express = require("express");
 const Product = require("../models/Product");
 
-const {
-  verifyTokenAndAuthorization,
-  verifyTokenAndAdmin,
-} = require("../middlewares/verifyToken");
-const { hash } = require("../utilities/hash");
+const { verifyTokenAndAdmin } = require("../middlewares/verifyToken");
 
 const router = express.Router();
 
 // Create product
 
 router.post("/", verifyTokenAndAdmin, async (req, res) => {
-  const newProduct = Product(req.body);
+  const newProduct = new Product(req.body);
 
   try {
     const savedProduct = await newProduct.save();
