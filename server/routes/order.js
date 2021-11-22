@@ -88,6 +88,7 @@ router.get("/income", async (req, res) => {
     const income = await Order.aggregate([
       { $match: { createdAt: { $gte: previousMonth } } },
       { $project: { month: "$createdAt", sales: "$amount" } },
+      { $group: { _id: "$month", total: { $sum: "$sales" } } },
     ]);
 
     income
