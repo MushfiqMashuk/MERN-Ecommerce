@@ -51,13 +51,13 @@ router.delete("/:id", verifyTokenAndAdmin, async (req, res) => {
 });
 
 // find User Orders
-router.get("/find/:id", async (req, res) => {
+router.get("/find/:id", verifyTokenAndAuthorization, async (req, res) => {
   try {
     const orders = await Order.find({ userId: req.params.id });
 
     orders
       ? res.status(200).json(orders)
-      : res.status(404).json("There is no Orders!");
+      : res.status(404).json("There is no Order!");
   } catch (err) {
     res.status(500).json(err);
   }
@@ -67,11 +67,32 @@ router.get("/find/:id", async (req, res) => {
 
 router.get("/", verifyTokenAndAdmin, async (req, res) => {
   try {
-    const carts = Cart.find();
+    const orders = await Order.find();
 
-    carts
-      ? res.status(200).json(carts)
-      : res.status(404).json("There is no Cart!");
+    orders
+      ? res.status(200).json(orders)
+      : res.status(404).json("There is no Order!");
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+// Get Monthly Income
+
+router.get("/income", async (req, res) => {
+  const date = new Date();
+  const lastMonth = new Date(date.setMonth(date.getMonth() - 1));
+  const previousMonth = new Date(lastMonth.setMonth(lastMonth.getMonth() - 1));
+
+  try {
+    const income = await Order.aggregate([
+      { $match: { createdAt: { $gte: previousMonth } } },
+      { $project: { month: "$createdAt", sales: "$amount" } },
+    ]);
+
+    income
+      ? res.status(200).json(income)
+      : res.status(404).json("No income to show!");
   } catch (err) {
     res.status(500).json(err);
   }

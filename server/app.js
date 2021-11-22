@@ -4,6 +4,8 @@ const dotenv = require("dotenv");
 const userRouter = require("./routes/user");
 const authRouter = require("./routes/auth");
 const productRouter = require("./routes/product");
+const cartRouter = require("./routes/cart");
+const orderRouter = require("./routes/order");
 
 // configure dotenv file
 dotenv.config();
@@ -23,6 +25,8 @@ app.use(express.json());
 app.use("/auth", authRouter);
 app.use("/user", userRouter);
 app.use("/product", productRouter);
+app.use("/cart", cartRouter);
+app.use("/order", orderRouter);
 
 app.listen(process.env.PORT || 5000, () => {
   console.log(`Listening to port ${process.env.PORT}...`);
