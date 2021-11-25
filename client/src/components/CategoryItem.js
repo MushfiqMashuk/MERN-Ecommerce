@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import {
   Button,
   Container,
@@ -13,7 +14,9 @@ export default function CategoryItem({ item }) {
       <Image src={item.img} />
       <Info>
         <Title>{item.title}</Title>
-        <Button>SHOP NOW</Button>
+        <Link to={`/products/${item.cat}`}>
+          <Button>SHOP NOW</Button>
+        </Link>
       </Info>
     </Container>
   );
