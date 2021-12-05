@@ -10,7 +10,10 @@ const Container = styled.div`
   justify-content: space-between;
 `;
 
-export default function Products() {
+export default function Products({category, filters, sort}) {
+
+  console.log(category, filters, sort);
+
   return (
     <Container>
       {popularProducts &&
