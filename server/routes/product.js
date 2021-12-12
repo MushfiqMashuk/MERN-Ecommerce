@@ -75,7 +75,6 @@ router.get("/", async (req, res) => {
         categories: { $in: [categoryQuery] }, // If the field is an Array
       });
     } else {
-      console.log("normal");
       products = await Product.find();
     }
 

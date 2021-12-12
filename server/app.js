@@ -6,6 +6,7 @@ const authRouter = require("./routes/auth");
 const productRouter = require("./routes/product");
 const cartRouter = require("./routes/cart");
 const orderRouter = require("./routes/order");
+const cors = require("cors");
 
 // configure dotenv file
 dotenv.config();
@@ -20,6 +21,13 @@ const app = express();
 
 // Preparing my app to take json object
 app.use(express.json());
+
+/* To fix a server error. (...has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource) */
+app.use(
+  cors({
+    origin: "*",
+  })
+);
 
 // Mounting sub apps to their respective routes
 app.use("/auth", authRouter);

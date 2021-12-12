@@ -1,6 +1,5 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { popularProducts } from "../data/productData";
 import ProductItems from "./ProductItems";
 
 const Container = styled.div`
@@ -10,17 +9,46 @@ const Container = styled.div`
   justify-content: space-between;
 `;
 
-export default function Products({category, filters, sort}) {
+export default function Products({ category, filters, sort }) {
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
 
-  console.log(category, filters, sort);
+  useEffect(() => {
+    const getProducts = async () => {
+      try {
+        setLoading(true);
+        setError(false);
+
+        const response = await fetch(
+          category
+            ? `http://localhost:5000/product?category=${category}`
+            : `http://localhost:5000/product`
+        );
+
+        const data = await response.json();
+
+        setLoading(false);
+
+        setProducts(data);
+      } catch (err) {
+        setError(true);
+        console.log(err);
+      }
+    };
+
+    getProducts();
+  }, [category]);
+
+  //console.log(products);
 
   return (
     <Container>
-      {popularProducts &&
-        popularProducts.length > 0 &&
-        popularProducts.map((item) => (
-          <ProductItems key={item.id} item={item} />
-        ))}
+      {loading && <h3>Loading...</h3>}
+      {error && <h3>Oops! Can not load products!</h3>}
+      {products &&
+        products.length > 0 &&
+        products.map((item) => <ProductItems key={item._id} item={item} />)}
     </Container>
   );
 }
