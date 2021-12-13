@@ -17,7 +17,7 @@ export default function ProductList() {
   const handleChange = (e) => {
     setFilters({
       ...filters,
-      [e.target.name]: e.target.value,
+      [e.target.name]: e.target.value.toLowercase(),
     });
   };
 
