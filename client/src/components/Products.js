@@ -56,9 +56,9 @@ export default function Products({ category, filters, sort }) {
     <Container>
       {loading && <h3>Loading...</h3>}
       {error && <h3>Oops! Can not load products!</h3>}
-      {filteredProducts &&
-        filteredProducts.length > 0 &&
-        filteredProducts.map((item) => (
+      {products &&
+        products.length > 0 &&
+        products.map((item) => (
           <ProductItems key={item._id} item={item} />
         ))}
     </Container>

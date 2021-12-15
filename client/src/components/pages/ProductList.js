@@ -29,6 +29,7 @@ export default function ProductList() {
           <FilterText>Filter Products:</FilterText>
           <Select onChange={handleChange} name="color" defaultValue="Color">
             <Option disabled>Color</Option>
+            <Option>Cream</Option>
             <Option>Red</Option>
             <Option>Green</Option>
             <Option>Blue</Option>
@@ -36,6 +37,8 @@ export default function ProductList() {
             <Option>White</Option>
             <Option>Navy Blue</Option>
             <Option>Black</Option>
+            <Option>Brown</Option>
+            <Option>Orange</Option>
           </Select>
           <Select onChange={handleChange} name="size" defaultValue="Size">
             <Option disabled>Size</Option>

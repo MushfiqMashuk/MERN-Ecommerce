@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        setTimeout(() => {
+            setTimeout(() => console.log("First Function"), 1000);
+        }, 1000);
+
+        setTimeout(() => {
+            console.log("Second Function")
+        }, 2000);
+
+        setTimeout(() => {
+            console.log("Third Function")
+        }, 1000);
+
+        setTimeout(() => {
+            console.log("Fourth Function")
+        }, 1000);
+    </script>
+</body>
+</html>
