@@ -17,7 +17,7 @@ export default function ProductList() {
   const handleChange = (e) => {
     setFilters({
       ...filters,
-      [e.target.name]: e.target.value.toLowercase(),
+      [e.target.name]: e.target.value.toLowerCase(),
     });
   };
 
@@ -39,6 +39,7 @@ export default function ProductList() {
             <Option>Black</Option>
             <Option>Brown</Option>
             <Option>Orange</Option>
+            <Option>Ash</Option>
           </Select>
           <Select onChange={handleChange} name="size" defaultValue="Size">
             <Option disabled>Size</Option>

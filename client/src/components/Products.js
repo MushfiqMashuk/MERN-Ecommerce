@@ -17,6 +17,7 @@ export default function Products({ category, filters, sort }) {
 
   useEffect(() => {
     const getProducts = async () => {
+      console.log("This from first useEffect");
       try {
         setLoading(true);
         setError(false);
@@ -42,23 +43,25 @@ export default function Products({ category, filters, sort }) {
   }, [category]);
 
   useEffect(() => {
+    console.log("This from second useEffect");
     category &&
       setFilteredProducts(
-        products.filter((item) => {
-          Object.entries(filters).every(([key, value]) => {
-            item[key].includes(value);
-          });
-        })
+        products.filter((item) =>
+          Object.entries(filters).every(([key, value]) =>
+            item[key].includes(value)
+          )
+        )
       );
-  }, [category, filters, products]);
+  }, [products, category, filters]);
 
   return (
     <Container>
       {loading && <h3>Loading...</h3>}
       {error && <h3>Oops! Can not load products!</h3>}
-      {products &&
-        products.length > 0 &&
-        products.map((item) => (
+      {category &&
+        filteredProducts &&
+        filteredProducts.length > 0 &&
+        filteredProducts.map((item) => (
           <ProductItems key={item._id} item={item} />
         ))}
     </Container>
