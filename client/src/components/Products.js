@@ -43,7 +43,6 @@ export default function Products({ category, filters, sort }) {
   }, [category]);
 
   useEffect(() => {
-    console.log("This from second useEffect");
     category &&
       setFilteredProducts(
         products.filter((item) =>
@@ -57,13 +56,18 @@ export default function Products({ category, filters, sort }) {
   return (
     <Container>
       {loading && <h3>Loading...</h3>}
-      {error && <h3>Oops! Can not load products!</h3>}
-      {category &&
-        filteredProducts &&
-        filteredProducts.length > 0 &&
-        filteredProducts.map((item) => (
-          <ProductItems key={item._id} item={item} />
-        ))}
+      {error && !loading && <h3>Can not find your desired products!</h3>}
+      {category
+        ? filteredProducts &&
+          filteredProducts.length > 0 &&
+          filteredProducts.map((item) => (
+            <ProductItems key={item._id} item={item} />
+          ))
+        : products &&
+          products.length > 0 &&
+          products
+            .slice(0, 7)
+            .map((item) => <ProductItems key={item._id} item={item} />)}
     </Container>
   );
 }
