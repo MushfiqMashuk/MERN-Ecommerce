@@ -54,9 +54,10 @@ export default function ProductList() {
         <Filter>
           <FilterText>Sort Products:</FilterText>
           <Select
-            defaultValue="Newest"
+            defaultValue="Sort"
             onChange={(e) => setSort(e.target.value)}
           >
+            <Option disabled>Sort</Option>
             <Option value="newest">Newest</Option>
             <Option value="asc">From Lowest Price</Option>
             <Option value="desc">From Highest Price</Option>
