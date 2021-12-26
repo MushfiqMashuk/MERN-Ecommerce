@@ -56,7 +56,10 @@ export default function Products({ category, filters, sort }) {
   useEffect(() => {
     if (sort === "newest") {
       setFilteredProducts((prev) =>
-        [...prev].sort((a, b) => b.createdAt - a.createdAt)
+        [...prev].sort((a, b) => {
+          console.log(a.createdAt);
+          return b.createdAt - a.createdAt;
+        })
       );
     } else if (sort === "asc") {
       setFilteredProducts((prev) =>
@@ -67,7 +70,7 @@ export default function Products({ category, filters, sort }) {
         [...prev].sort((a, b) => b.price - a.price)
       );
     }
-  });
+  }, [sort]);
 
   return (
     <Container>
