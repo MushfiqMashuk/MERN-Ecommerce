@@ -23,7 +23,7 @@ export default function ProductList() {
 
   return (
     <Layout>
-      <Title>Dresses</Title>
+      <Title>{category.toUpperCase()}</Title>
       <FilterContainer>
         <Filter>
           <FilterText>Filter Products:</FilterText>
@@ -53,10 +53,7 @@ export default function ProductList() {
         </Filter>
         <Filter>
           <FilterText>Sort Products:</FilterText>
-          <Select
-            defaultValue="Sort"
-            onChange={(e) => setSort(e.target.value)}
-          >
+          <Select defaultValue="Sort" onChange={(e) => setSort(e.target.value)}>
             <Option disabled>Sort</Option>
             <Option value="newest">Newest</Option>
             <Option value="asc">From Lowest Price</Option>

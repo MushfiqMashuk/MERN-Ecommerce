@@ -1,5 +1,6 @@
 import { Add, Remove } from "@material-ui/icons";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import {
   AddContainer,
   Amount,
@@ -22,6 +23,26 @@ import {
 import Layout from "../Layout";
 
 export default function Product() {
+  const location = useLocation();
+  const productId = location.pathname.split("/")[2];
+
+  const [product, setProduct] = useState({});
+
+  useEffect(() => {
+    const getProductInfo = async () => {
+      try {
+        const response = await fetch(
+          `http://localhost:5000/product/find/${productId}`
+        );
+      } catch (err) {
+
+        
+      }
+    };
+
+    getProductInfo();
+  }, [productId]);
+
   return (
     <Layout>
       <Wrapper>

@@ -17,7 +17,6 @@ export default function Products({ category, filters, sort }) {
 
   useEffect(() => {
     const getProducts = async () => {
-      console.log("This from first useEffect");
       try {
         setLoading(true);
         setError(false);
@@ -54,12 +53,10 @@ export default function Products({ category, filters, sort }) {
   }, [products, category, filters]);
 
   useEffect(() => {
+    console.log(sort);
     if (sort === "newest") {
       setFilteredProducts((prev) =>
-        [...prev].sort((a, b) => {
-          console.log(a.createdAt);
-          return b.createdAt - a.createdAt;
-        })
+        [...prev].sort((a, b) => a.createdAt - b.createdAt)
       );
     } else if (sort === "asc") {
       setFilteredProducts((prev) =>

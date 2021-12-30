@@ -4,6 +4,7 @@ import {
   ShoppingCartTwoTone,
 } from "@material-ui/icons";
 import React from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const Info = styled.div`
@@ -80,7 +81,9 @@ export default function ProductItems({ item }) {
           <ShoppingCartTwoTone />
         </Icon>
         <Icon>
-          <SearchTwoTone />
+          <Link to={`/product/${item._id}`}>
+            <SearchTwoTone />
+          </Link>
         </Icon>
         <Icon>
           <FavoriteOutlined />
