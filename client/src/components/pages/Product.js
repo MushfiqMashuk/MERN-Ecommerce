@@ -34,9 +34,13 @@ export default function Product() {
         const response = await fetch(
           `http://localhost:5000/product/find/${productId}`
         );
-      } catch (err) {
 
-        
+        const data = await response.json();
+
+        setProduct(data);
+        console.log(data);
+      } catch (err) {
+        console.log(err);
       }
     };
 
@@ -47,17 +51,12 @@ export default function Product() {
     <Layout>
       <Wrapper>
         <ImageContainer>
-          <Image src="images/jean.jpg" />
+          <Image src={product.img} />
         </ImageContainer>
         <InfoContainer>
-          <Title>Denim Jumpsuit</Title>
-          <Description>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam
-            blanditiis ex repellat consectetur temporibus. Eligendi ea molestiae
-            autem mollitia ducimus tempora perspiciatis, iste earum pariatur et,
-            sequi ipsam qui asperiores.
-          </Description>
-          <Price>$ 30</Price>
+          <Title>{product.title}</Title>
+          <Description>{product.desc}</Description>
+          <Price>{`$ ${product.price}`}</Price>
 
           <FilterContainer>
             <Filter>
