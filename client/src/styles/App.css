@@ -5,3 +5,8 @@
   margin: 0;
   font-family: "Urbanist", sans-serif;
 }
+
+h2 {
+  margin: 15px;
+  text-align: center;
+}

@@ -76,7 +76,7 @@ export default function Footer() {
         <ContactItem>
           <MailTwoTone style={{ marginRight: "10px" }} /> contact@mash.dev
         </ContactItem>
-        <Payment src="images/payment.png" />
+        <Payment src="https://i.ibb.co/F7YYysd/payment.png" />
       </Right>
     </Container>
   );

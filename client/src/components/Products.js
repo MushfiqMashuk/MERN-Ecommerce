@@ -30,11 +30,11 @@ export default function Products({ category, filters, sort }) {
         const data = await response.json();
 
         setLoading(false);
-
         setProducts(data);
       } catch (err) {
-        setError(true);
         console.log(err);
+        setLoading(false);
+        setError(true);
       }
     };
 
@@ -53,7 +53,6 @@ export default function Products({ category, filters, sort }) {
   }, [products, category, filters]);
 
   useEffect(() => {
-    console.log(sort);
     if (sort === "newest") {
       setFilteredProducts((prev) =>
         [...prev].sort((a, b) => a.createdAt - b.createdAt)
@@ -71,8 +70,8 @@ export default function Products({ category, filters, sort }) {
 
   return (
     <Container>
-      {loading && <h3>Loading...</h3>}
-      {error && !loading && <h3>Can not find your desired products!</h3>}
+      {loading && <h2>Loading...</h2>}
+      {error && <h2>Can not find your desired products!</h2>}
       {category
         ? filteredProducts &&
           filteredProducts.length > 0 &&
