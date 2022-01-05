@@ -70,8 +70,8 @@ export default function Products({ category, filters, sort }) {
 
   return (
     <Container>
-      {loading && <h2>Loading...</h2>}
-      {error && <h2>Can not find your desired products!</h2>}
+      {loading && <h3>Loading...</h3>}
+      {error && <h3>Can not find your desired products!</h3>}
       {category
         ? filteredProducts &&
           filteredProducts.length > 0 &&
