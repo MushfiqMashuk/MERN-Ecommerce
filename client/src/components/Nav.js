@@ -1,6 +1,8 @@
 import { Badge } from "@material-ui/core";
 import { SearchTwoTone, ShoppingCartTwoTone } from "@material-ui/icons";
 import React from "react";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import {
   Center,
   Container,
@@ -15,6 +17,10 @@ import {
 } from "../styles/NavbarStyles";
 
 export default function Nav() {
+  const cartQuantity = useSelector((state) => state.cart.quantity);
+
+  console.log(cartQuantity);
+
   return (
     <Container>
       <Wrapper>
@@ -31,11 +37,13 @@ export default function Nav() {
         <Right>
           <MenuItem>REGISTER</MenuItem>
           <MenuItem>SIGNIN</MenuItem>
-          <MenuItem>
-            <Badge color="secondary" badgeContent={5}>
-              <ShoppingCartTwoTone />
-            </Badge>
-          </MenuItem>
+          <Link to="/cart">
+            <MenuItem>
+              <Badge color="secondary" badgeContent={cartQuantity}>
+                <ShoppingCartTwoTone />
+              </Badge>
+            </MenuItem>
+          </Link>
         </Right>
       </Wrapper>
     </Container>
