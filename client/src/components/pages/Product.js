@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useLocation } from "react-router-dom";
 import { publicRequest } from "../../handlers/requestMethods";
-import { addProduct } from "../../redux/cartRedux";
+import { addProduct } from "../../redux/cartSlice";
 import {
   AddContainer,
   Amount,

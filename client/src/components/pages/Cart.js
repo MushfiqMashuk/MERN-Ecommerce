@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import StripeCheckout from "react-stripe-checkout";
-import { privateRequest } from "../../handlers/requestMethods";
 import {
   Amount,
   AmountContainer,
