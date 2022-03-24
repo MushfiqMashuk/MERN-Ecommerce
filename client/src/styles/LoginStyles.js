@@ -66,6 +66,12 @@ const Button = styled.button`
     background-color: #022333;
     color: white;
   }
+
+  &:disabled {
+    background-color: #64936d;
+    color: white;
+    cursor: not-allowed;
+  }
 `;
 
 export { Container, Wrapper, Form, Title, Input, Agreement, Button };
