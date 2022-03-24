@@ -1,7 +1,8 @@
 import { Add, Remove } from "@material-ui/icons";
-import React from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import StripeCheckout from "react-stripe-checkout";
 import {
   Amount,
   AmountContainer,
@@ -31,11 +32,20 @@ import {
   TopTexts,
   Wrapper,
 } from "../../styles/CartStyles";
+import Logo from "../../styles/images/logo.svg";
 import Layout from "../Layout";
 
 export default function Cart() {
   const cart = useSelector((state) => state.cart);
-  const { products, quantity, total } = cart;
+  const [stripeToken, setStripeToken] = useState(null);
+  const { products, total } = cart;
+
+  const KEY = process.env.REACT_APP_STRIPE_KEY;
+
+  const onToken = (token) => {
+    setStripeToken(token);
+    console.log(stripeToken);
+  };
 
   return (
     <div>
@@ -95,7 +105,7 @@ export default function Cart() {
               <SummaryTitle>ORDER SUMMARY</SummaryTitle>
               <SummaryItem>
                 <SummaryItemText>Subtotal</SummaryItemText>
-                <SummaryItemPrice>$ {cart.total}</SummaryItemPrice>
+                <SummaryItemPrice>$ {total}</SummaryItemPrice>
               </SummaryItem>
               <SummaryItem>
                 <SummaryItemText>Estimated Shipping</SummaryItemText>
@@ -107,9 +117,20 @@ export default function Cart() {
               </SummaryItem>
               <SummaryItem type="total">
                 <SummaryItemText>Total</SummaryItemText>
-                <SummaryItemPrice>$ {cart.total}</SummaryItemPrice>
+                <SummaryItemPrice>$ {total}</SummaryItemPrice>
               </SummaryItem>
-              <Button>CHECKOUT NOW</Button>
+              <StripeCheckout
+                name="MERN E-commerce"
+                image={Logo}
+                billingAddress
+                shippingAddress
+                description={`Your total is $${total}`}
+                amount={total * 100}
+                token={onToken}
+                stripeKey={KEY}
+              >
+                <Button>CHECKOUT NOW</Button>
+              </StripeCheckout>
             </Summary>
           </Bottom>
         </Wrapper>

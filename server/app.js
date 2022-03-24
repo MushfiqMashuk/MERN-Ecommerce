@@ -6,6 +6,7 @@ const authRouter = require("./routes/auth");
 const productRouter = require("./routes/product");
 const cartRouter = require("./routes/cart");
 const orderRouter = require("./routes/order");
+const stripeRouter = require("./routes/stripe");
 const cors = require("cors");
 
 // configure dotenv file
@@ -35,6 +36,7 @@ app.use("/user", userRouter);
 app.use("/product", productRouter);
 app.use("/cart", cartRouter);
 app.use("/order", orderRouter);
+app.use("/checkout", stripeRouter);
 
 app.listen(process.env.PORT || 5000, () => {
   console.log(`Listening to port ${process.env.PORT}...`);
