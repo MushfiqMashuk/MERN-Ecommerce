@@ -6,6 +6,7 @@ import Login from "./components/pages/Login";
 import Product from "./components/pages/Product";
 import ProductList from "./components/pages/ProductList";
 import Register from "./components/pages/Register";
+import Success from "./components/pages/Success";
 import "./styles/App.css";
 
 function App() {
@@ -17,8 +18,9 @@ function App() {
         <Route path="/products/:category" element={<ProductList />} />
         <Route path="/product/:id" element={<Product />} />
         <Route path="/cart" element={<Cart />} />
-        <Route path="/login" element={ user? "Home page" : <Login />} />
-        <Route path="/register" element={user? "Home page" : <Register />} />
+        <Route path="/success" element={<Success />} />
+        <Route path="/login" element={user ? "Home page" : <Login />} />
+        <Route path="/register" element={user ? "Home page" : <Register />} />
       </Routes>
     </Router>
   );

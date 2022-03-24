@@ -2,7 +2,7 @@ import axios from "axios";
 
 const baseURL = "http://localhost:5000/";
 
-const token = "";
+const TOKEN = "";
 
 export const publicRequest = axios.create({
   baseURL,
@@ -10,5 +10,5 @@ export const publicRequest = axios.create({
 
 export const privateRequest = axios.create({
   baseURL,
-  headers: { token: `Bearer ${token}` },
+  header: { token: `Bearer ${TOKEN}` },
 });

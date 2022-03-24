@@ -1,8 +1,9 @@
 import { Add, Remove } from "@material-ui/icons";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import StripeCheckout from "react-stripe-checkout";
+import { privateRequest } from "../../handlers/requestMethods";
 import {
   Amount,
   AmountContainer,
@@ -39,6 +40,7 @@ export default function Cart() {
   const cart = useSelector((state) => state.cart);
   const [stripeToken, setStripeToken] = useState(null);
   const { products, total } = cart;
+  const navigate = useNavigate();
 
   const KEY = process.env.REACT_APP_STRIPE_KEY;
 
@@ -46,6 +48,27 @@ export default function Cart() {
     setStripeToken(token);
     console.log(stripeToken);
   };
+
+  console.log(stripeToken);
+
+  useEffect(() => {
+    // Make request to the server with the Token returned to the frontend to create a charge in Stripe
+
+    const makeRequest = async () => {
+      try {
+        const response = await privateRequest.post("/checkout/payment", {
+          tokenId: stripeToken.id,
+          amount: total * 1000,
+        });
+
+        navigate("/success", { stripeData: response.data, products: cart });
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    stripeToken && total > 0 && makeRequest();
+  }, [stripeToken]);
 
   return (
     <div>
@@ -119,18 +142,20 @@ export default function Cart() {
                 <SummaryItemText>Total</SummaryItemText>
                 <SummaryItemPrice>$ {total}</SummaryItemPrice>
               </SummaryItem>
-              <StripeCheckout
-                name="MERN E-commerce"
-                image={Logo}
-                billingAddress
-                shippingAddress
-                description={`Your total is $${total}`}
-                amount={total * 100}
-                token={onToken}
-                stripeKey={KEY}
-              >
-                <Button>CHECKOUT NOW</Button>
-              </StripeCheckout>
+              {total > 0 && (
+                <StripeCheckout
+                  name="MERN E-commerce"
+                  image={Logo}
+                  billingAddress
+                  shippingAddress
+                  description={`Your total is $${total}`}
+                  amount={total * 100}
+                  token={onToken}
+                  stripeKey={KEY}
+                >
+                  <Button>CHECKOUT NOW</Button>
+                </StripeCheckout>
+              )}
             </Summary>
           </Bottom>
         </Wrapper>
