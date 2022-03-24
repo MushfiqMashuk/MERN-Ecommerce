@@ -2,7 +2,7 @@ import { publicRequest } from "../handlers/requestMethods";
 import { loginFailure, loginStart, loginSuccess } from "./userSlice";
 
 export const login = async (dispatch, user) => {
-  dispatch(loginStart);
+  dispatch(loginStart());
   try {
     const response = await publicRequest.post("auth/login", user);
 
