@@ -61,7 +61,7 @@ export default function Cart() {
           amount: total * 1000,
         });
 
-        navigate("/success", { stripeData: response.data, products: cart });
+        navigate("/success", { data: response.data, cart });
       } catch (err) {
         console.log(err);
       }
