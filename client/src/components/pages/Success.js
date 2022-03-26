@@ -1,12 +1,11 @@
-import React from "react";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useLocation } from "react-router";
 import { privateRequest } from "../../handlers/requestMethods";
 
 const Success = () => {
   const location = useLocation();
-  console.log(location.state);
+
   const { data, cart } = location.state;
 
   const currentUser = useSelector((state) => state.user.currentUser);
