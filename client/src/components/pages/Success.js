@@ -23,7 +23,7 @@ const Success = () => {
             quantity: item._quantity,
           })),
           amount: cart.total,
-          address: "Dhaka",
+          address: data.billing_details.address,
         });
         setOrderId(response.data._id);
       } catch (err) {

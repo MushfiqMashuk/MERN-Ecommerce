@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import StripeCheckout from "react-stripe-checkout";
+import { privateRequest } from "../../handlers/requestMethods";
 import {
   Amount,
   AmountContainer,
@@ -42,41 +43,22 @@ export default function Cart() {
   const navigate = useNavigate();
 
   const KEY = process.env.REACT_APP_STRIPE_KEY;
-  const baseUrl = process.env.REACT_APP_SERVER_URL;
 
   const onToken = (token) => {
     setStripeToken(token);
-    console.log(stripeToken);
   };
-
-  console.log(stripeToken);
 
   useEffect(() => {
     // Make request to the server with the Token returned to the frontend to create a charge in Stripe
 
     const makeRequest = async () => {
       try {
-        // const response = await privateRequest.post("/checkout/payment", {
-        //   tokenId: stripeToken.id,
-        //   amount: total * 1000,
-        // });
-        const body = {
+        const response = await privateRequest.post("/checkout/payment", {
           tokenId: stripeToken.id,
           amount: total * 1000,
-        };
-        const response = await fetch(`${baseUrl}/checkout/payment`, {
-          method: "POST",
-          mode: "cors", // no-cors, *cors, same-origin
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${KEY}`,
-          },
-          body: JSON.stringify(body),
         });
 
-        const data = await response.json();
-
-        navigate("/success", { state: { data, cart } });
+        navigate("/success", { state: { data: response.data, cart } });
       } catch (err) {
         console.error(err);
       }
