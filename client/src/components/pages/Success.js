@@ -6,6 +6,8 @@ import { privateRequest } from "../../handlers/requestMethods";
 const Success = () => {
   const location = useLocation();
 
+  console.log(location);
+
   const { data, cart } = location.state;
 
   const currentUser = useSelector((state) => state.user.currentUser);
@@ -21,7 +23,7 @@ const Success = () => {
             quantity: item._quantity,
           })),
           amount: cart.total,
-          address: data.billing_details.address,
+          address: "Dhaka",
         });
         setOrderId(response.data._id);
       } catch (err) {

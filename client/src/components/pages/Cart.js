@@ -76,14 +76,14 @@ export default function Cart() {
 
         const data = await response.json();
 
-        navigate("/success", { data, cart });
+        navigate("/success", { state: { data, cart } });
       } catch (err) {
         console.error(err);
       }
     };
 
     stripeToken && total > 0 && makeRequest();
-  }, [stripeToken]);
+  }, [stripeToken, total]);
 
   return (
     <div>
