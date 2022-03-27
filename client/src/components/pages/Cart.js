@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import StripeCheckout from "react-stripe-checkout";
-import { privateRequest } from "../../handlers/requestMethods";
 import {
   Amount,
   AmountContainer,
@@ -43,6 +42,7 @@ export default function Cart() {
   const navigate = useNavigate();
 
   const KEY = process.env.REACT_APP_STRIPE_KEY;
+  const baseUrl = process.env.REACT_APP_SERVER_URL;
 
   const onToken = (token) => {
     setStripeToken(token);
@@ -56,14 +56,29 @@ export default function Cart() {
 
     const makeRequest = async () => {
       try {
-        const response = await privateRequest.post("/checkout/payment", {
+        // const response = await privateRequest.post("/checkout/payment", {
+        //   tokenId: stripeToken.id,
+        //   amount: total * 1000,
+        // });
+        const body = {
           tokenId: stripeToken.id,
           amount: total * 1000,
+        };
+        const response = await fetch(`${baseUrl}/checkout/payment`, {
+          method: "POST",
+          mode: "cors", // no-cors, *cors, same-origin
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${KEY}`,
+          },
+          body: JSON.stringify(body),
         });
 
-        navigate("/success", { data: response.data, cart });
+        const data = await response.json();
+
+        navigate("/success", { data, cart });
       } catch (err) {
-        console.log(err);
+        console.error(err);
       }
     };
 
