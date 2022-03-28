@@ -68,7 +68,6 @@ export default function Product() {
       quantity > 1 && setQuantity((prev) => prev - 1);
     } else {
       setQuantity((prev) => prev + 1);
-      console.log(quantity);
     }
   };
 

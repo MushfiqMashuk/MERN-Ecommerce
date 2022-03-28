@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useLocation } from "react-router";
 import { privateRequest } from "../../handlers/requestMethods";
+import { deleteProduct } from "../../redux/cartSlice";
+
 
 const Success = () => {
   const location = useLocation();
-
-  console.log(location);
+  const dispatch = useDispatch();
 
   const { data, cart } = location.state;
 
@@ -26,6 +27,7 @@ const Success = () => {
           address: data.billing_details.address,
         });
         setOrderId(response.data._id);
+        dispatch(deleteProduct());
       } catch (err) {
         console.log(err);
       }
