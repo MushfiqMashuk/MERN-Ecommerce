@@ -51,7 +51,7 @@ const Success = () => {
       {orderId
         ? `Order has been created successfully. Your order number is ${orderId}`
         : `Successfull. Your order is being prepared...`}
-
+      {!data && "Invalid Link! Please go back to home page"}
       <Link to="/">
         <button style={{ padding: 10, marginTop: 20, cursor: "pointer" }}>
           Go to Homepage
