@@ -32,7 +32,7 @@ export default function Nav() {
           </SearchContainer>
         </Left>
         <Center>
-          <Logo>MASH</Logo>
+          <Logo>MERN Ecommerce</Logo>
         </Center>
         <Right>
           <Link to="/register">
