@@ -39,6 +39,8 @@ export default function Product() {
   const [quantity, setQuantity] = useState(1);
   const dispatch = useDispatch();
 
+  const baseURL = process.env.REACT_APP_SERVER_URL;
+
   useEffect(() => {
     const getProductInfo = async () => {
       try {
@@ -46,7 +48,7 @@ export default function Product() {
         setError(false);
 
         const response = await publicRequest.get(
-          `http://localhost:5000/product/find/${productId}`
+          `${baseURL}/product/find/${productId}`
         );
 
         const data = response.data;
@@ -61,7 +63,7 @@ export default function Product() {
     };
 
     getProductInfo();
-  }, [productId]);
+  }, [productId, baseURL]);
 
   const handleCount = (param) => {
     if (param === "dec") {

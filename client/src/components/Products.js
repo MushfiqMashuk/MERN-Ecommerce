@@ -14,6 +14,7 @@ export default function Products({ category, filters, sort }) {
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
+  const baseURL = process.env.REACT_APP_SERVER_URL;
 
   useEffect(() => {
     const getProducts = async () => {
@@ -23,8 +24,8 @@ export default function Products({ category, filters, sort }) {
 
         const response = await fetch(
           category
-            ? `http://localhost:5000/product?category=${category}`
-            : `http://localhost:5000/product`
+            ? `${baseURL}/product?category=${category}`
+            : `${baseURL}/product`
         );
 
         const data = await response.json();
@@ -39,7 +40,7 @@ export default function Products({ category, filters, sort }) {
     };
 
     getProducts();
-  }, [category]);
+  }, [category, baseURL]);
 
   useEffect(() => {
     category &&
