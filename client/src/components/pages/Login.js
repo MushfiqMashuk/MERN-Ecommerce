@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { login } from "../../redux/apiCalls";
 import { Button, Form, Input, Title, Wrapper } from "../../styles/LoginStyles";
@@ -17,7 +18,7 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
 `;
-const Link = styled.a`
+const LinkElement = styled.a`
   cursor: pointer;
   color: #1877f2;
 
@@ -73,8 +74,10 @@ export default function Login() {
           </Button>
           {error && <Error>Something went wrong! Please try again</Error>}
           <LinkContainer>
-            <Link>Forgot Password?</Link>
-            <Link>Don't have an account? Signup here</Link>
+            <LinkElement>Forgot Password?</LinkElement>
+            <Link to="/register">
+              <LinkElement>Don't have an account? Signup here</LinkElement>
+            </Link>
           </LinkContainer>
         </Form>
       </Wrapper>
