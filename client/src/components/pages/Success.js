@@ -22,9 +22,10 @@ const Success = () => {
 
   const currentUser = useSelector((state) => state.user.currentUser);
   const [orderId, setOrderId] = useState(null);
+  const [error, setError] = useState();
 
   useEffect(() => {
-    if (data) {
+    if (data && currentUser) {
       const createOrder = async () => {
         try {
           const response = await privateRequest.post("/order", {
@@ -39,21 +40,26 @@ const Success = () => {
           setOrderId(response.data._id);
           dispatch(deleteProduct());
         } catch (err) {
+          setError("Server Error!");
           console.log(err);
         }
       };
-      data && createOrder();
+      data && currentUser && createOrder();
+    } else {
+      setError("Please create an account or add some product in your cart!");
     }
-  }, [cart, data, currentUser]);
+  }, [cart, data, currentUser, dispatch]);
 
   return (
     <Container>
-      {orderId
+      {error
+        ? error
+        : orderId
         ? `Order has been created successfully. Your order number is ${orderId}`
         : `Successfull. Your order is being prepared...`}
 
       <Link to="/">
-        <button style={{ padding: 10, marginTop: 20, cursor: "pointer" }}>
+        <button style={{ padding: 10, marginTop: 20, cursor: "point`er" }}>
           Go to Homepage
         </button>
       </Link>

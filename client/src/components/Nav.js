@@ -19,8 +19,6 @@ import {
 export default function Nav() {
   const cartQuantity = useSelector((state) => state.cart.quantity);
 
-  console.log(cartQuantity);
-
   return (
     <Container>
       <Wrapper>
