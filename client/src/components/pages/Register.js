@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import {
   Agreement,
   Button,
@@ -19,13 +20,15 @@ export default function Register() {
           <Input placeholder="Last Name" required />
           <Input placeholder="Username" required />
           <Input placeholder="Email" required />
-          <Input placeholder="Password" required />
-          <Input placeholder="Confirm Password" required />
+          <Input placeholder="Password" required type="password" />
+          <Input placeholder="Confirm Password" required type="password" />
           <Agreement>
             By Creating an account, I consent to the processing of my personal
             data in accordance with the <b>PRIVACY POLICY</b>
           </Agreement>
-          <Button>REGISTER NOW</Button>
+          <Link to="/login">
+            <Button>REGISTER NOW</Button>
+          </Link>
         </Form>
       </Wrapper>
     </Container>
