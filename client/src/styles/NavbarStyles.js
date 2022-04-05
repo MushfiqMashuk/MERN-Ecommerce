@@ -31,6 +31,7 @@ const Left = styled.div`
 const Center = styled.div`
   flex: 1;
   text-align: center;
+  ${mobile({ marginLeft: "5px" })}
 `;
 
 const Right = styled.div`
@@ -63,7 +64,7 @@ const SearchContainer = styled.div`
 
 const Logo = styled.h1`
   font-weight: bold;
-  ${mobile({ fontSize: "22px" })}
+  ${mobile({ fontSize: "18px" })}
 `;
 
 const MenuItem = styled.div`
