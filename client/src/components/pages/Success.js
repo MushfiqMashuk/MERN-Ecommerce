@@ -9,9 +9,9 @@ import { deleteProduct } from "../../redux/cartSlice";
 const Container = styled.div`
   height: 100vh;
   display: flex;
-  flexdirection: column;
-  alignitems: center;
-  justifycontent: center;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 `;
 
 const Success = () => {
@@ -59,7 +59,7 @@ const Success = () => {
         : `Successfull. Your order is being prepared...`}
 
       <Link to="/">
-        <button style={{ padding: 10, marginTop: 20, cursor: "point`er" }}>
+        <button style={{ padding: 10, marginTop: 20, cursor: "pointer" }}>
           Go to Homepage
         </button>
       </Link>
